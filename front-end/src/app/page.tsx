@@ -228,8 +228,8 @@ const WebsiteConversionLanding = () => {
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
               Most business websites are silent profit killers. Every day
-              without optimization, you're bleeding potential customers and
-              revenue. Don't let poor design cost you another sale.
+              without optimization, you&apos;re bleeding potential customers and
+              revenue. Don&apos;t let poor design cost you another sale.
             </p>
           </div>
         </div>

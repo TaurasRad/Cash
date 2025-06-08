@@ -19,7 +19,7 @@ const Navbar = async () => {
 
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await (await supabase).auth.getUser();
 
   return (
     <header className="w-full">

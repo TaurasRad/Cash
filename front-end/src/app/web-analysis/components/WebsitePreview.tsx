@@ -46,6 +46,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({
           </div>
         ) : screenshot ? (
           <div className="relative w-full h-[400px] md:h-[650px] overflow-hidden rounded-lg shadow-lg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={screenshot}
               alt="Website screenshot"

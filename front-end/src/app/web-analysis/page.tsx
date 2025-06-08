@@ -205,12 +205,12 @@ export default function WebsiteAnalyzer() {
                     </div>
                   )}
 
-                  {/* Checkout Top: What you'll get */}
+                  {/* Checkout Top: What you&apos;ll get */}
                   {showCheckout && (
                     <div className="block md:static md:mb-6 animate-fadeIn">
                       <div className="bg-blue-50 rounded-lg p-4 space-y-2 border border-blue-100">
                         <h3 className="font-semibold text-blue-900">
-                          What you'll get:
+                          What you&apos;ll get:
                         </h3>
                         <ul className="space-y-1 text-sm text-blue-800">
                           <li className="flex items-center space-x-2">
