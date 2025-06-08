@@ -39,44 +39,60 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({
     <div className="relative min-h-[320px] md:min-h-[650px] bg-white md:border-l border-gray-200 overflow-hidden">
       {/* Website Preview Background */}
       <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-        {screenshotLoading ? (
-          <div className="text-center text-blue-600 animate-pulse">
-            <Globe className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-            <p>Loading the website...</p>
-          </div>
-        ) : screenshot ? (
-          <div className="relative w-full h-[400px] md:h-[650px] overflow-hidden rounded-lg shadow-lg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={screenshot}
-              alt="Website screenshot"
-              className="object-top object-cover w-full h-full"
-              style={{ maxHeight: "100%", maxWidth: "100%" }}
-            />
-            {/* Optional: Fade at the bottom */}
-            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-          </div>
-        ) : screenshotError ? (
-          <div className="text-center text-red-500">
-            <Globe className="w-16 h-16 text-red-300 mx-auto mb-2" />
-            <p>Screenshot failed: {screenshotError}</p>
-          </div>
-        ) : analysisComplete && email ? (
-          <div className="text-center opacity-30">
-            <Mail className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-            <p className="text-blue-500">{email}</p>
-          </div>
-        ) : websiteUrl ? (
-          <div className="text-center opacity-30">
-            <Globe className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-            <p className="text-blue-500">{websiteUrl}</p>
-          </div>
-        ) : (
-          <div className="text-center text-blue-400">
-            <Globe className="w-16 h-16 text-blue-300 mx-auto mb-2" />
-            <p>Enter a URL to see preview</p>
-          </div>
-        )}
+        <div
+          className={
+            showCheckout
+              ? "w-full h-full filter blur-md pointer-events-none"
+              : "w-full h-full"
+          }
+        >
+          {screenshotLoading ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-center text-blue-600 animate-pulse">
+                <Globe className="w-16 h-16 text-blue-400 mx-auto mb-2" />
+                <p>Loading the website...</p>
+              </div>
+            </div>
+          ) : screenshot ? (
+            <div className="relative w-full h-[400px] md:h-[650px] overflow-hidden rounded-lg shadow-lg">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={screenshot}
+                alt="Website screenshot"
+                className="object-top object-cover w-full h-full"
+                style={{ maxHeight: "100%", maxWidth: "100%" }}
+              />
+              {/* Optional: Fade at the bottom */}
+              <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+            </div>
+          ) : screenshotError ? (
+            <div className="text-center text-red-500">
+              <Globe className="w-16 h-16 text-red-300 mx-auto mb-2" />
+              <p>Screenshot failed: {screenshotError}</p>
+            </div>
+          ) : analysisComplete && email ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-center opacity-30">
+                <Mail className="w-16 h-16 text-blue-400 mx-auto mb-2" />
+                <p className="text-blue-500">{email}</p>
+              </div>
+            </div>
+          ) : websiteUrl ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-center opacity-30">
+                <Globe className="w-16 h-16 text-blue-400 mx-auto mb-2" />
+                <p className="text-blue-500">{websiteUrl}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="text-center text-blue-400">
+                <Globe className="w-16 h-16 text-blue-300 mx-auto mb-2" />
+                <p>Enter a URL to see preview</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Analysis Overlay */}

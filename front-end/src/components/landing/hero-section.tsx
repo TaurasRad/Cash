@@ -35,7 +35,7 @@ export default function HeroContent() {
               size="lg"
               className="w-full bg-[#FF7171] text-white hover:bg-[#ff5f5f] px-8 py-3 text-base font-semibold shadow-lg transition-all hover:shadow-xl sm:w-auto rounded-lg"
             >
-              <Link href="#">Upgrade My Website Now</Link>
+              <Link href="/web-analysis">Upgrade My Website Now</Link>
             </Button>
             <Button
               asChild

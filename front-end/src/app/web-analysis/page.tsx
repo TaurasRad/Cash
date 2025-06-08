@@ -17,6 +17,8 @@ import {
   Code,
 } from "lucide-react";
 import WebsitePreview from "./components/WebsitePreview";
+import CheckoutBenefits from "./components/CheckoutBenefits";
+import { motion } from "framer-motion";
 
 export default function WebsiteAnalyzer() {
   const [websiteUrl, setWebsiteUrl] = useState("");
@@ -122,21 +124,21 @@ export default function WebsiteAnalyzer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white flex flex-col items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen bg-gray-100 text-gray-800 selection:bg-pink-500 selection:text-white flex flex-col items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-5xl">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             Website Optimizer
           </h1>
-          <p className="text-gray-300">Transform your website instantly</p>
+          <p className="text-gray-500">Transform your website instantly</p>
         </div>
 
         <Card className="bg-white shadow-xl border-0 overflow-hidden">
-          <CardContent className="p-0 md:p-0">
+          <CardContent className="p-0 md:p-0 text-gray-800">
             <div className="grid md:grid-cols-2">
               {/* Left Column: Inputs and Checkout */}
-              <div className="p-4 flex flex-col h-full text-gray-900">
+              <div className="p-4 flex flex-col h-full text-gray-800">
                 <div className="flex flex-col space-y-4">
                   {/* Website Input */}
                   {!analysisComplete && (
@@ -160,10 +162,11 @@ export default function WebsiteAnalyzer() {
                           className="h-12 bg-gray-100 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-400"
                           disabled={isAnalyzing}
                         />
+                        {/* Analyze button for mobile only */}
                         {!isAnalyzing && !analysisComplete && (
                           <Button
                             onClick={handleStartAnalysis}
-                            className="h-12 px-6 w-[120px] rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
+                            className="h-12 px-6 w-[120px] rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300 block md:hidden"
                             disabled={!websiteUrl}
                           >
                             Analyze
@@ -194,9 +197,10 @@ export default function WebsiteAnalyzer() {
                           placeholder="your@email.com"
                           className="h-12 bg-gray-100 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-400"
                         />
+                        {/* Continue button for mobile only */}
                         <Button
                           onClick={handleProceed}
-                          className="h-12 w-fit rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
+                          className="h-12 w-fit rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300 block md:hidden"
                           disabled={!email}
                         >
                           Continue
@@ -206,54 +210,32 @@ export default function WebsiteAnalyzer() {
                   )}
 
                   {/* Checkout Top: What you&apos;ll get */}
-                  {showCheckout && (
-                    <div className="block md:static md:mb-6 animate-fadeIn">
-                      <div className="bg-blue-50 rounded-lg p-4 space-y-2 border border-blue-100">
-                        <h3 className="font-semibold text-blue-900">
-                          What you&apos;ll get:
-                        </h3>
-                        <ul className="space-y-1 text-sm text-blue-800">
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Fully optimized website code</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>SEO improvements</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Performance enhancements</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                          <li className="flex items-center space-x-2">
-                            <CheckCircle className="w-4 h-4" />
-                            <span>Modern design updates</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  )}
+                  {showCheckout && <CheckoutBenefits />}
                 </div>
+
+                {/* Bottom-aligned buttons for desktop only */}
+                {!analysisComplete && (
+                  <div className="hidden md:block mt-auto">
+                    <Button
+                      onClick={handleStartAnalysis}
+                      className="h-12 px-6 w-full rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
+                      disabled={!websiteUrl || isAnalyzing}
+                    >
+                      Analyze
+                    </Button>
+                  </div>
+                )}
+                {analysisComplete && !showCheckout && (
+                  <div className="hidden md:block mt-auto">
+                    <Button
+                      onClick={handleProceed}
+                      className="h-12 w-full rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
+                      disabled={!email}
+                    >
+                      Continue
+                    </Button>
+                  </div>
+                )}
 
                 {/* Checkout Bottom: Button and Guarantee */}
                 {showCheckout && (
@@ -311,33 +293,6 @@ export default function WebsiteAnalyzer() {
           </CardContent>
         </Card>
       </div>
-
-      {/* CSS for animations */}
-      <style jsx global>{`
-        @keyframes scanMove {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(100%);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
