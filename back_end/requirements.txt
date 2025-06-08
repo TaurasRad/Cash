@@ -6,12 +6,12 @@ anyio==4.9.0
 async-timeout==5.0.1
 attrs==25.3.0
 certifi==2025.4.26
-chardet @ file:///home/conda/feedstock_root/build_artifacts/chardet_1741797914774/work
+chardet
 colorama==0.4.6
 deprecation==2.1.0
 distro==1.9.0
 exceptiongroup==1.3.0
-freetype-py @ file:///home/conda/feedstock_root/build_artifacts/freetype-py_1650983368720/work
+freetype-py 
 frozenlist==1.6.2
 gotrue==2.12.0
 greenlet==3.2.3
@@ -27,7 +27,7 @@ jiter==0.10.0
 multidict==6.4.4
 openai==1.84.0
 packaging==25.0
-pillow @ file:///D:/bld/pillow_1746646245659/work
+pillow 
 playwright==1.52.0
 pluggy==1.6.0
 postgrest==1.0.2
@@ -43,8 +43,8 @@ pytest-mock==3.14.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
 realtime==2.4.3
-reportlab @ file:///D:/bld/reportlab_1747315369273/work
-rlPyCairo @ file:///home/conda/feedstock_root/build_artifacts/rlpycairo_1687519531733/work
+reportlab 
+rlPyCairo 
 six==1.17.0
 sniffio==1.3.1
 storage3==0.11.3
