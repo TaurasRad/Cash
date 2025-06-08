@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/web-analysis?success=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/web-analysis?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/post-purchase?success=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/post-purchase?canceled=true`,
     });
 
     return NextResponse.json({ url: session.url });

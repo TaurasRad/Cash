@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import {
   CheckCircle,
   Globe,
@@ -18,6 +16,7 @@ import {
   Layers,
   Code,
 } from "lucide-react";
+import WebsitePreview from "./components/WebsitePreview";
 
 export default function WebsiteAnalyzer() {
   const [websiteUrl, setWebsiteUrl] = useState("");
@@ -123,22 +122,22 @@ export default function WebsiteAnalyzer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white flex flex-col items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-5xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             Website Optimizer
           </h1>
-          <p className="text-gray-600">Transform your website instantly</p>
+          <p className="text-gray-300">Transform your website instantly</p>
         </div>
 
-        <Card className="shadow-xl border-0 overflow-hidden">
+        <Card className="bg-white shadow-xl border-0 overflow-hidden">
           <CardContent className="p-0 md:p-0">
             <div className="grid md:grid-cols-2">
               {/* Left Column: Inputs and Checkout */}
-              <div className="p-6 md:p-8 flex flex-col md:justify-between h-full min-h-[500px]">
-                <div className="flex-1 flex flex-col space-y-6">
+              <div className="p-4 flex flex-col h-full text-gray-900">
+                <div className="flex flex-col space-y-4">
                   {/* Website Input */}
                   {!analysisComplete && (
                     <div className="space-y-4">
@@ -146,7 +145,7 @@ export default function WebsiteAnalyzer() {
                         <Globe className="w-5 h-5 text-blue-600" />
                         <label
                           htmlFor="website"
-                          className="text-lg font-medium text-gray-800"
+                          className="text-lg font-semibold text-gray-900"
                         >
                           Enter Your Website
                         </label>
@@ -158,13 +157,13 @@ export default function WebsiteAnalyzer() {
                           value={websiteUrl}
                           onChange={(e) => setWebsiteUrl(e.target.value)}
                           placeholder="https://example.com"
-                          className="h-12"
+                          className="h-12 bg-gray-100 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-400"
                           disabled={isAnalyzing}
                         />
                         {!isAnalyzing && !analysisComplete && (
                           <Button
                             onClick={handleStartAnalysis}
-                            className="h-12 px-6 w-[100px] rounded-[10px]"
+                            className="h-12 px-6 w-[120px] rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
                             disabled={!websiteUrl}
                           >
                             Analyze
@@ -181,23 +180,23 @@ export default function WebsiteAnalyzer() {
                         <Mail className="w-5 h-5 text-blue-600" />
                         <label
                           htmlFor="email"
-                          className="text-lg font-medium text-gray-800"
+                          className="text-lg font-semibold text-gray-900"
                         >
                           Enter Your Email
                         </label>
                       </div>
-                      <div className="flex space-x-2">
+                      <div className="flex flex-col gap-4">
                         <Input
                           type="email"
                           id="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="your@email.com"
-                          className="h-12"
+                          className="h-12 bg-gray-100 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-400"
                         />
                         <Button
                           onClick={handleProceed}
-                          className="h-12 px-6"
+                          className="h-12 w-fit rounded-full font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg shadow-lg transition-all duration-300"
                           disabled={!email}
                         >
                           Continue
@@ -209,7 +208,7 @@ export default function WebsiteAnalyzer() {
                   {/* Checkout Top: What you'll get */}
                   {showCheckout && (
                     <div className="block md:static md:mb-6 animate-fadeIn">
-                      <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+                      <div className="bg-blue-50 rounded-lg p-4 space-y-2 border border-blue-100">
                         <h3 className="font-semibold text-blue-900">
                           What you'll get:
                         </h3>
@@ -260,7 +259,7 @@ export default function WebsiteAnalyzer() {
                 {showCheckout && (
                   <div className="space-y-6 animate-fadeIn mt-4 md:mt-auto">
                     <Button
-                      className="w-full h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                      className="w-full h-12 text-lg font-bold rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg transition-all duration-300"
                       onClick={async () => {
                         try {
                           const res = await fetch(
@@ -295,136 +294,19 @@ export default function WebsiteAnalyzer() {
               </div>
 
               {/* Right Column: Website Preview with Analysis Overlay */}
-              <div className="relative min-h-[320px] md:min-h-[650px] bg-gray-50 md:border-l border-gray-200 overflow-hidden">
-                {/* Website Preview Background */}
-                <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                  {screenshotLoading ? (
-                    <div className="text-center text-gray-400 animate-pulse">
-                      <Globe className="w-16 h-16 text-gray-300 mx-auto mb-2" />
-                      <p>Loading the website...</p>
-                    </div>
-                  ) : screenshot ? (
-                    <div className="relative w-full h-[400px] md:h-[650px] overflow-hidden rounded-lg shadow-lg">
-                      <img
-                        src={screenshot}
-                        alt="Website screenshot"
-                        className="object-top object-cover w-full h-full"
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      />
-                      {/* Optional: Fade at the bottom */}
-                      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white/80 to-transparent pointer-events-none" />
-                    </div>
-                  ) : screenshotError ? (
-                    <div className="text-center text-red-500">
-                      <Globe className="w-16 h-16 text-red-300 mx-auto mb-2" />
-                      <p>Screenshot failed: {screenshotError}</p>
-                    </div>
-                  ) : analysisComplete && email ? (
-                    <div className="text-center opacity-30">
-                      <Mail className="w-16 h-16 text-blue-400 mx-auto mb-2" />
-                      <p className="text-blue-500">{email}</p>
-                    </div>
-                  ) : websiteUrl ? (
-                    <div className="text-center opacity-30">
-                      <Globe className="w-16 h-16 text-gray-400 mx-auto mb-2" />
-                      <p className="text-gray-500">{websiteUrl}</p>
-                    </div>
-                  ) : (
-                    <div className="text-center text-gray-400">
-                      <Globe className="w-16 h-16 text-gray-300 mx-auto mb-2" />
-                      <p>Enter a URL to see preview</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Analysis Overlay */}
-                {isAnalyzing && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10">
-                    {/* Analysis Progress Bar */}
-                    <div className="absolute top-4 left-4 right-4 flex items-center space-x-2">
-                      <Progress
-                        value={analysisProgress}
-                        className="h-2 flex-grow"
-                      />
-                      <span className="text-xs font-medium text-gray-700">
-                        {Math.round(analysisProgress)}%
-                      </span>
-                    </div>
-
-                    {/* Analysis Steps Indicators */}
-                    {analysisSteps.map((step, index) => (
-                      <div
-                        key={index}
-                        className={`absolute transition-all duration-500 ease-in-out ${
-                          index <= currentAnalysisStep
-                            ? "opacity-100 scale-100"
-                            : "opacity-0 scale-95"
-                        }`}
-                        style={{
-                          top: step.position.top,
-                          left: step.position.left,
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      >
-                        <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg">
-                          <div className="bg-blue-100 text-blue-600 p-1 rounded-full">
-                            {step.icon}
-                          </div>
-                          <span className="text-sm font-medium text-gray-800">
-                            {step.text}
-                          </span>
-                          {index < currentAnalysisStep && (
-                            <CheckCircle className="w-4 h-4 text-green-500" />
-                          )}
-                        </div>
-                      </div>
-                    ))}
-
-                    {/* Scanning Effect */}
-                    <div
-                      className="absolute inset-0 bg-gradient-to-b from-blue-400/0 via-blue-400/10 to-blue-400/0"
-                      style={{
-                        animation: "scanMove 2s linear infinite",
-                        backgroundSize: "100% 10px",
-                      }}
-                    ></div>
-                  </div>
-                )}
-
-                {/* Locked Overlay (when analysis is complete) */}
-                {analysisComplete && !showCheckout && (
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center p-4">
-                    <div className="text-center text-white bg-black/50 backdrop-blur-sm p-6 rounded-lg">
-                      <Badge
-                        variant="default"
-                        className="bg-green-100 text-green-800 px-4 py-2 mb-4"
-                      >
-                        <CheckCircle className="w-4 h-4 mr-2" />
-                        Analysis Complete!
-                      </Badge>
-                      <p className="font-medium text-lg text-white">
-                        Your optimized website is ready
-                      </p>
-                      <p className="text-sm opacity-90 mb-4 text-white">
-                        Enter your email on the left to continue
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Checkout Overlay */}
-                {showCheckout && (
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center p-4">
-                    <div className="text-center text-white">
-                      <Lock className="w-12 h-12 mx-auto mb-2" />
-                      <p className="font-medium text-white">Locked Preview</p>
-                      <p className="text-sm opacity-90 text-white">
-                        Complete checkout on the left to unlock
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <WebsitePreview
+                websiteUrl={websiteUrl}
+                email={email}
+                screenshot={screenshot}
+                screenshotLoading={screenshotLoading}
+                screenshotError={screenshotError}
+                isAnalyzing={isAnalyzing}
+                analysisProgress={analysisProgress}
+                analysisSteps={analysisSteps}
+                currentAnalysisStep={currentAnalysisStep}
+                analysisComplete={analysisComplete}
+                showCheckout={showCheckout}
+              />
             </div>
           </CardContent>
         </Card>
