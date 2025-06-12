@@ -24,7 +24,7 @@ const testimonialsData: Testimonial[] = [
     title: "CEO, TechFlow Solutions",
     rating: 5,
     quote:
-      '"Our website was a disaster - slow, ugly, and converting at 0.8%. WebOptimize Pro completely transformed it. We now convert at 4.2% and our revenue increased by 312% in just 3 months. Best investment we\'ve made."',
+      "&quot;Our website was a disaster - slow, ugly, and converting at 0.8%. WebOptimize Pro completely transformed it. We now convert at 4.2% and our revenue increased by 312% in just 3 months. Best investment we&apos;ve made.&quot;",
     metrics: [
       { value: "+312%", label: "Revenue Increase" },
       { value: "4.2%", label: "Conversion Rate" },
@@ -37,7 +37,7 @@ const testimonialsData: Testimonial[] = [
     title: "Founder, Bloom Garden",
     rating: 5,
     quote:
-      '"I came across an ad about how much a good website can impact sales, so I gave it a shot — and honestly, I\'m blown away. The difference was almost instant. Our sales jumped, and I only wish we had done this sooner!"',
+      "&quot;I came across an ad about how much a good website can impact sales, so I gave it a shot — and honestly, I&apos;m blown away. The difference was almost instant. Our sales jumped, and I only wish we had done this sooner!&quot;",
     metrics: [
       { value: "+50", label: "New Customers/Month" },
       { value: "7x", label: "ROI Increase" },
@@ -50,7 +50,7 @@ const testimonialsData: Testimonial[] = [
     title: "Owner, Premium Dental Care",
     rating: 5,
     quote:
-      '"Our old website looked like it was from 2005 and we were losing patients to competitors. The new site is stunning and professional. Online bookings increased drastically and we\'re booked solid for months."',
+      "&quot;Our old website looked like it was from 2005 and we were losing patients to competitors. The new site is stunning and professional. Online bookings increased drastically and we&apos;re booked solid for months.&quot;",
     metrics: [
       { value: "+430%", label: "Online Bookings" },
       { value: "95%", label: "Mobile Score" },
@@ -94,11 +94,11 @@ const StarRating = ({
 
 export default function TestimonialsSection() {
   return (
-    <div className="pb-16 sm:pb-16 md:pb-24 bg-gray-100">
+    <div className="bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 mb-2">
-            Don't Take Our Word for It
+            Don&apos;t Take Our Word for It
           </h2>
           <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">
             Hear It From Our Clients
@@ -132,7 +132,7 @@ export default function TestimonialsSection() {
                 <StarRating rating={testimonial.rating} />
               </div>
               <p className="text-gray-600 leading-relaxed mb-6 text-sm sm:text-base">
-                "{testimonial.quote}"
+                {testimonial.quote}
               </p>
               <hr className="my-4 border-gray-200" />
               <div className="grid grid-cols-2 gap-4 text-center sm:text-left">

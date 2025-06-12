@@ -1,6 +1,6 @@
-// No import for Lucide icons needed if only using emojis
-// import { Search, Palette, Smartphone, Target } from 'lucide-react'
-// import type { LucideProps } from "lucide-react"
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Settings2, Sparkles, Zap } from "lucide-react";
+import { ReactNode } from "react";
 
 interface BenefitItem {
   emoji: string; // Changed from icon component to emoji string
@@ -42,15 +42,16 @@ const benefitItemsData: BenefitItem[] = [
 
 export default function RevenueMachinesSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gray-100">
+    <div className="bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 mb-4">
-            We Turn Websites Into
+          <h2 className="text-4xl font-semibold text-normal lg:text-5xl">
+            We Turn Websites Into Revenue Machines
           </h2>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">
-            Revenue Machines
-          </h2>
+          <p className="mt-4">
+            Libero sapiente aliquam quibusdam aspernatur, praesentium iusto
+            repellendus.
+          </p>
         </div>
 
         {/* Stats Row */}
@@ -83,35 +84,112 @@ export default function RevenueMachinesSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:gap-8 max-w-3xl mx-auto">
+        <div className="flex flex-col sm:flex-col md:flex-row gap-4 md:gap-8">
           {benefitItemsData.map((item, index) => (
-            <div
+            <Card
+              className="group border-0 bg-muted shadow-none bg-gray-200"
               key={index}
-              className="bg-white text-gray-700 p-3 sm:p-6 md:p-6 rounded-3xl md:rounded-3xl flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="flex flex-row items-center space-x-3 md:space-x-5 mb-1">
-                <div
-                  className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center ${item.iconBgClass}`}
-                >
-                  <span
-                    className="text-xl sm:text-2xl md:text-3xl"
-                    role="img"
-                    aria-label={item.title.split(" ")[0] + " emoji"}
-                  >
-                    {item.emoji}
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800">
-                  {item.title}
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+              <CardHeader className="pb-3">
+                <CardDecorator>
+                  <Zap className="size-6" aria-hidden />
+                </CardDecorator>
+
+                <h3 className="mt-6 font-medium">Customizable</h3>
+              </CardHeader>
+
+              <CardContent>
+                <p className="text-sm">
+                  Extensive customization options, allowing you to tailor every
+                  aspect to meet your specific needs.
+                </p>
+              </CardContent>
+            </Card>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Features() {
+  return (
+    <section className="py-16 md:py-32">
+      <div className="@container mx-auto max-w-5xl px-6">
+        <div className="text-center">
+          <h2 className="text-balance text-4xl font-semibold lg:text-5xl">
+            Built to cover your needs
+          </h2>
+          <p className="mt-4">
+            Libero sapiente aliquam quibusdam aspernatur, praesentium iusto
+            repellendus.
+          </p>
+        </div>
+        <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16">
+          <Card className="group border-0 bg-muted shadow-none">
+            <CardHeader className="pb-3">
+              <CardDecorator>
+                <Zap className="size-6" aria-hidden />
+              </CardDecorator>
+
+              <h3 className="mt-6 font-medium">Customizable</h3>
+            </CardHeader>
+
+            <CardContent>
+              <p className="text-sm">
+                Extensive customization options, allowing you to tailor every
+                aspect to meet your specific needs.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="group border-0 bg-muted shadow-none">
+            <CardHeader className="pb-3">
+              <CardDecorator>
+                <Settings2 className="size-6" aria-hidden />
+              </CardDecorator>
+
+              <h3 className="mt-6 font-medium">You have full control</h3>
+            </CardHeader>
+
+            <CardContent>
+              <p className="text-sm">
+                From design elements to functionality, you have complete control
+                to create a unique and personalized experience.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="group border-0 bg-muted shadow-none">
+            <CardHeader className="pb-3">
+              <CardDecorator>
+                <Sparkles className="size-6" aria-hidden />
+              </CardDecorator>
+
+              <h3 className="mt-6 font-medium">Powered By AI</h3>
+            </CardHeader>
+
+            <CardContent>
+              <p className="text-sm">
+                Elements to functionality, you have complete control to create a
+                unique experience.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
   );
 }
+
+const CardDecorator = ({ children }: { children: ReactNode }) => (
+  <div
+    aria-hidden
+    className="relative mx-auto size-36 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"
+  >
+    <div className="absolute inset-0 [--border:black] dark:[--border:white] bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:24px_24px] opacity-10" />
+    <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-t border-l">
+      {children}
+    </div>
+  </div>
+);

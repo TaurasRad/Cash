@@ -6,8 +6,8 @@ const CostOfDoingNothing = () => (
       The Cost of Doing Nothing
     </h2>
     <p className="text-white text-base md:text-lg">
-      Every day you wait, you're losing customers to competitors with better
-      websites. A poor website costs the average business
+      Every day you wait, you&apos;re losing customers to competitors with
+      better websites. A poor website costs the average business
       <br />
       <span className="font-semibold">$62,000+ per year</span> in lost revenue.
     </p>

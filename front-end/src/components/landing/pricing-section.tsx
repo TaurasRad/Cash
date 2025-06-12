@@ -69,7 +69,7 @@ const pricingPlansData: PricingPlan[] = [
 
 export default function PricingSection() {
   return (
-    <div className="pb-8 sm:pb-12 md:pb-16 bg-gray-100">
+    <div className="bg-gray-100">
       <div className="bg-gradient-to-br from-[#BCAAFE] via-[#8C73FF] to-[#5F40D9] text-white rounded-2xl sm:rounded-3xl lg:rounded-[70px] w-[95%] mx-auto py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12">
@@ -141,7 +141,7 @@ export default function PricingSection() {
                       plan.textColorClass
                     )}
                   >
-                    What's included
+                    What&apos;s included
                   </p>
                   <ul className="space-y-1 mb-6">
                     {plan.features.map((feature, featureIndex) => (
