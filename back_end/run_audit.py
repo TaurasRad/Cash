@@ -1,13 +1,10 @@
-#!/usr/bin/env python3
+from flask import Flask, request, jsonify
 import os
-import sys
 import datetime
 from urllib.parse import urlparse
-
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 from supabase import create_client
-from storage3.exceptions import StorageApiError
 from openai import OpenAI
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -19,6 +16,30 @@ from email.mime.application import MIMEApplication
 # ─── Load environment once ─────────────────────────────────────────────────────
 load_dotenv()
 
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Welcome to the CRO & UX Audit API! Use POST /run-audit to start."
+
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # This prevents the favicon 404 error
+
+@app.route('/run-audit', methods=['POST'])
+def run_audit_endpoint():
+    # Get JSON input from the request
+    data = request.json
+    web_link = data.get("web_link")
+    if not web_link:
+        return jsonify({"error": "Missing web_link parameter"}), 400
+
+    try:
+        # Run the sync function
+        pdf_filename = run_audit(web_link)
+        return jsonify({"message": "Audit completed", "pdf_filename": pdf_filename}), 200
+    except RuntimeError as e:
+        return jsonify({"error": str(e)}), 500
 
 def run_audit(web_link: str) -> str:
     """
@@ -101,7 +122,7 @@ def run_audit(web_link: str) -> str:
 
     # ─── 6) Generate audit via ChatCompletion ──────────────────────────────────
     prompt = f"""
-I want a comprehensive, in-depth CRO & UX audit of the e-commerce site {web_link}, illustrated with the landing-page screenshot at {screenshot_url}.  
+    I want a comprehensive, in-depth CRO & UX audit of the e-commerce site {web_link}, illustrated with the landing-page screenshot at {screenshot_url}.  
 Do NOT cover SEO—focus purely on Conversion Rate Optimization and User Experience, leveraging Baymard Institute benchmarks and Cialdini’s persuasion principles.
 
 Your deliverable should include:
@@ -212,7 +233,7 @@ Your deliverable should include:
 
 Format your audit as a professional slide-deck or report, with clear headings, numbered figures/tables, captions, and an appendix of raw data and screenshots. Make every recommendation concrete, actionable, and ready for immediate implementation.
 
-""".strip()
+    """
 
     chat_resp = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -229,33 +250,7 @@ Format your audit as a professional slide-deck or report, with clear headings, n
     )
     report = chat_resp.choices[0].message.content.strip()
 
-    # ─── 7) Render to PDF ────────────────────────────────────────────────────────
-    pdf_fn = f"{domain}_{ts}_cro_report.pdf"
-    c = canvas.Canvas(pdf_fn, pagesize=letter)
-    width, height = letter
-    y = height - 40
-
-    for para in report.split("\n\n"):
-        for line in para.split("\n"):
-            buf = ""
-            for w in line.split():
-                if len(buf) + len(w) + 1 > 80:
-                    c.drawString(40, y, buf)
-                    y -= 14
-                    buf = w + " "
-                else:
-                    buf += w + " "
-            if buf:
-                c.drawString(40, y, buf)
-                y -= 14
-        y -= 10
-        if y < 40:
-            c.showPage()
-            y = height - 40
-
-    c.save()
-
-    # ─── 8) Email the PDF ────────────────────────────────────────────────────────
+ # ─── 8) Email the PDF ────────────────────────────────────────────────────────
     msg = MIMEMultipart()
     msg["Subject"] = "Your In-Depth CRO Audit Report"
     msg["From"]    = smtp_user
@@ -298,10 +293,5 @@ Format your audit as a professional slide-deck or report, with clear headings, n
 
     return pdf_fn
 
-
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python mainscript.py <URL>")
-        sys.exit(1)
-    result_pdf = run_audit(sys.argv[1])
-    print(f"✅ Audit complete, PDF generated: {result_pdf}")
+    app.run(debug=True)

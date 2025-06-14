@@ -6,10 +6,16 @@
       "use": "@vercel/python"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/run_audit.py"
-    }
-  ]
+  "env": {
+    "OPENAI_API_KEY": "@openai-api-key",
+    "SUPABASE_URL": "@supabase-url",
+    "SUPABASE_KEY": "@supabase-key",
+    "SUPABASE_BUCKET": "@supabase-bucket",
+    "SMTP_HOST": "@smtp-host",
+    "SMTP_PORT": "@smtp-port",
+    "SMTP_USER": "@smtp-user",
+    "SMTP_PASSWORD": "@smtp-password",
+    "COUNTRY": "@country",
+    "EMAIL_TO": "@email-to"
+  }
 }
