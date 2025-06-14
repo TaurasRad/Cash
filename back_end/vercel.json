@@ -1,10 +1,5 @@
+
 {
-  "builds": [
-    {
-      "src": "api/**/*.py",
-      "use": "@vercel/python"
-    }
-  ],
   "functions": {
     "api/index.py": {
       "memory": 128,
@@ -14,8 +9,6 @@
       "memory": 512,
       "maxDuration": 30
     }
-  },
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1.py" }
-  ]
+  }
 }
+
