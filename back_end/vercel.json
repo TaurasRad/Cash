@@ -1,15 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "run_audit.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
-    {
-      "src": "/run-audit",
-      "dest": "run_audit.py"
-    }
+    { "src": "/run-audit", "dest": "/api/run-audit.py" }
   ]
 }
