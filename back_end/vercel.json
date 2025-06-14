@@ -5,5 +5,11 @@
       "src": "run_audit.py",
       "use": "@vercel/python"
     }
+  ],
+  "routes": [
+    {
+      "src": "/run-audit",
+      "dest": "run_audit.py"
+    }
   ]
 }
