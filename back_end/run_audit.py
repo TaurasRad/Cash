@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 from supabase import create_client
 from openai import OpenAI
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from fpdf import FPDF
+# from reportlab.lib.pagesizes import letter
+# from reportlab.pdfgen import canvas
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -25,6 +26,16 @@ def home():
 @app.route('/favicon.ico')
 def favicon():
     return '', 204  # This prevents the favicon 404 error
+
+def render_pdf(report: str, pdf_fn: str):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.set_font("Helvetica", size=12)
+    for para in report.split("\n\n"):
+        pdf.multi_cell(0, 10, para)
+        pdf.ln(5)
+    pdf.output(pdf_fn)
 
 @app.route('/run-audit', methods=['POST'])
 def run_audit_endpoint():
@@ -249,12 +260,15 @@ Format your audit as a professional slide-deck or report, with clear headings, n
         ],
     )
     report = chat_resp.choices[0].message.content.strip()
+    render_pdf(report, pdf_fn)
 
- # ─── 8) Email the PDF ────────────────────────────────────────────────────────
+
+# ─── 8) Email the PDF ────────────────────────────────────────────────────────
     msg = MIMEMultipart()
     msg["Subject"] = "Your In-Depth CRO Audit Report"
     msg["From"]    = smtp_user
     msg["To"]      = email_to
+
     html = f"""
 <html>
   <body style="font-family:Verdana,sans-serif;padding:20px;background:#f2f2f2;">
@@ -292,6 +306,7 @@ Format your audit as a professional slide-deck or report, with clear headings, n
     server.quit()
 
     return pdf_fn
+
 
 if __name__ == "__main__":
     app.run(debug=True)
