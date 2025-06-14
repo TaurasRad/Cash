@@ -1,6 +1,21 @@
 {
-  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "functions": {
+    "api/index.py": {
+      "memory": 128,
+      "maxDuration": 5
+    },
+    "api/run-audit.py": {
+      "memory": 512,
+      "maxDuration": 30
+    }
+  },
   "routes": [
-    { "src": "/run-audit", "dest": "/api/run-audit.py" }
+    { "src": "/api/(.*)", "dest": "/api/$1.py" }
   ]
 }
