@@ -7,8 +7,6 @@ from playwright.sync_api import sync_playwright
 from supabase import create_client
 from openai import OpenAI
 from fpdf import FPDF
-# from reportlab.lib.pagesizes import letter
-# from reportlab.pdfgen import canvas
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText

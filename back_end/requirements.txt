@@ -3,8 +3,7 @@ openai==0.27.0
 playwright==1.52.0
 Flask==2.0.3
 supabase==2.15.2
-reportlab==3.5.67
 python-dotenv==1.1.0
 pillow==9.4.0
 freetype-py==2.4.0
-#pycairo==1.20.0
+fpdf2==2.7.2
