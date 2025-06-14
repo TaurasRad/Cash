@@ -11,7 +11,7 @@ import Footer from "@/components/landing/footer";
 import MovingQuestionSection from "@/components/landing/moving-queston-section";
 import TrustedBySection from "@/components/landing/trusted-by-section";
 import { useHeaderScrollEffects } from "@/hooks/use-header-scroll";
-import { ProblemPointsSection } from "@/components/landing/problem-points-section";
+import { ProblemPointsSection } from "@/components/landing/problem-section/problem-points-section";
 import StickyCTA from "@/components/landing/sticky-cta";
 import EmailDiscountModal from "@/components/landing/email-discount-modal";
 
@@ -28,13 +28,12 @@ const WebsiteConversionLanding = () => {
   return (
     <>
       <EmailDiscountModal />
-      <div className="min-h-screen bg-gray-100 text-gray-800 selection:bg-pink-500 selection:text-white flex flex-col">
+      <div className="min-h-screen bg-grid-pattern bg-[size:40px_40px] text-gray-800 selection:bg-pink-500 selection:text-white flex flex-col">
         <Navbar />
-        <StickyTopBanner />
+        {/* <StickyTopBanner /> */}
         <StickyCTA />
-        <main className="flex flex-col gap-24">
+        <main className="flex flex-col gap-14 sm:gap-28">
           <HeroContent />
-          <TrustedBySection />
           <CostOfDoingNothing />
           <ProblemPointsSection />
           <RevenueMachinesSection />

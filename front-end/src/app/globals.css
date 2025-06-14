@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -75,6 +76,7 @@
   }
   body {
     @apply min-h-screen flex flex-col bg-background text-foreground;
+    font-family: "Sora", sans-serif;
   }
 
   h1 {
@@ -102,4 +104,12 @@
   section {
     @apply py-10 sm:py-20;
   }
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

@@ -33,8 +33,8 @@ const TrustedBySection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden">
           {/* Gradient overlays */}
-          <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-gray-100 to-transparent"></div>
-          <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-gray-100 to-transparent"></div>
+          {/* <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-gray-100 to-transparent"></div>
+          <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-gray-100 to-transparent"></div> */}
 
           {/* Scrolling container */}
           <div className="flex space-x-16 animate-scroll">

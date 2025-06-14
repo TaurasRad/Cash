@@ -10,7 +10,8 @@ export default function StickyBottomButton() {
     const handleScroll = () => {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > 300) {
+      console.log("Scrolled down:", scrollTop);
+      if (scrollTop > 600) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -23,20 +24,19 @@ export default function StickyBottomButton() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [showButton]);
 
   return (
     <div className=" flex justify-center">
       <button
         ref={buttonRef}
         className={`
-          fixed bottom-2 left-1/2 z-50 transform -translate-x-1/2 bg-[#5F40D9] hover:bg-purple-700 text-white font-bold py-2 px-6 
-          rounded-full shadow-lg hover:scale-105 w-fit border-4 border-white
-          transition-opacity duration-300
+          fixed bottom-4 left-1/2 z-50 transform -translate-x-1/2
+          inline-block px-6 sm:px-10 py-3 text-base sm:text-lg font-semibold text-gray-900 bg-white border-2 border-brand-orange rounded-full shadow-md hover:bg-orange-50 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 duration-300 whitespace-nowrap
           ${showButton ? "opacity-100" : "opacity-0 pointer-events-none"}
         `}
       >
-        ( COPY CTA )
+        Try Growtha
       </button>
     </div>
   );
