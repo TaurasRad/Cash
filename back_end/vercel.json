@@ -5,17 +5,5 @@
       "src": "run_audit.py",
       "use": "@vercel/python"
     }
-  ],
-  "env": {
-    "OPENAI_API_KEY": "@OPENAI_API_KEY",
-    "SUPABASE_URL": "@supabase-url",
-    "SUPABASE_KEY": "@supabase-key",
-    "SUPABASE_BUCKET": "@supabase-bucket",
-    "SMTP_HOST": "@smtp-host",
-    "SMTP_PORT": "@smtp-port",
-    "SMTP_USER": "@smtp-user",
-    "SMTP_PASSWORD": "@smtp-password",
-    "COUNTRY": "@country",
-    "EMAIL_TO": "@email-to"
-  }
+  ]
 }
