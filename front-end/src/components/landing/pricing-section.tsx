@@ -161,7 +161,7 @@ export default function PricingSection() {
           </div>
         </div>
       </div>
-      <div className="hidden lg:grid grid-cols-2 gap-8 max-w-4xl mx-5 mx-auto w-full">
+      <div className="hidden lg:grid grid-cols-2 gap-8 max-w-4xl mx-5 w-full">
         {pricingPlansData.map((plan, idx) => (
           <div
             key={idx}
