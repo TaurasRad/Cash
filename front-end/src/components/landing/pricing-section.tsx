@@ -135,7 +135,7 @@ export default function PricingSection() {
             </span>
           </div>
           <p className="text-sm font-semibold mb-3 text-gray-700">
-            What's included:
+            What&apos;s included:
           </p>
           <ul className="space-y-2 mb-8 w-full">
             {pricingPlansData[selectedPlanIndex].features.map(
@@ -188,7 +188,7 @@ export default function PricingSection() {
               </span>
             </div>
             <p className="text-sm font-semibold mb-3 text-gray-700">
-              What's included:
+              What&apos;s included:
             </p>
             <ul className="space-y-2 mb-8 w-full">
               {plan.features.map((feature: string, idx: number) => (

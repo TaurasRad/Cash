@@ -6,7 +6,7 @@ export default function AgentWork() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-2">
-            Instantly Know What's
+            Instantly Know What&apos;s
           </h2>
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent leading-tight">
             Killing Your Conversions

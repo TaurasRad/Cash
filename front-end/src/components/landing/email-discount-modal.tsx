@@ -92,7 +92,7 @@ export default function EmailDiscountModal() {
     if (open && step === "pick") {
       initializeCards();
     }
-  }, [initialCardCount, open, step]); // Rerun when initialCardCount changes
+  }, [initialCardCount, open, step, initializeCards]); // Rerun when initialCardCount changes
 
   useEffect(() => {
     if (step === "thanks") {
