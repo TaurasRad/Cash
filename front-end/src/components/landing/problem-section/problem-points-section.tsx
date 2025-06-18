@@ -6,7 +6,7 @@ import { problemsData } from "./components/problems";
 function ProblemPointsSection() {
   return (
     <div className="w-full">
-      <div className="container mx-auto">
+      <div className="w-full sm:px-28 px-5 mx-auto">
         <div className="flex flex-col gap-10">
           <div className="flex gap-4 flex-col items-start">
             <div className="flex gap-2 flex-col">

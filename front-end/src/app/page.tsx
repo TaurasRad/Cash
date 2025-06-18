@@ -14,6 +14,7 @@ import { useHeaderScrollEffects } from "@/hooks/use-header-scroll";
 import { ProblemPointsSection } from "@/components/landing/problem-section/problem-points-section";
 import StickyCTA from "@/components/landing/sticky-cta";
 import EmailDiscountModal from "@/components/landing/email-discount-modal";
+import AgentWork from "@/components/landing/agent-work";
 
 const NAVBAR_HEIGHT = 64; // Corresponds to h-16
 const BANNER_HEIGHT = 48;
@@ -37,9 +38,10 @@ const WebsiteConversionLanding = () => {
           <CostOfDoingNothing />
           <ProblemPointsSection />
           <RevenueMachinesSection />
+          <AgentWork />
           <TestimonialsSection />
           <PricingSection />
-          <MovingQuestionSection />
+          {/* <MovingQuestionSection /> */}
           <Footer />
         </main>
       </div>

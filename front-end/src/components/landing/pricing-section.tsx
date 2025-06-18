@@ -1,6 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/utils/cn";
+import { useState } from "react";
 
 interface PlanFeature {
   text: string;
@@ -20,163 +21,197 @@ interface PricingPlan {
   featureCheckColor: string;
 }
 
-const pricingPlansData: PricingPlan[] = [
+const features: string[] = [
+  "Website Analysis",
+  "Performance Audit",
+  "Competitor Research",
+  "CRO Recommendations",
+  "Speed & Performance Check",
+  "Mobile Optimization Review",
+  "Trust & Credibility Enhancements",
+  "User Journey Evaluation",
+  "Design Modernization Suggestions",
+  "Call-to-Action Optimization",
+];
+
+const pricingPlansData = [
   {
-    name: "Premium",
+    name: "growthaPlus",
     description: "For Individuals",
     originalPrice: "$99",
     price: "$49",
-    features: [
-      { text: "Website Analysis" },
-      { text: "Performance Audit" },
-      { text: "Competitor Research" },
-      { text: "CRO Recommendations" },
-      { text: "Speed & Performance Check" },
-      { text: "Mobile Optimization Review" },
-      { text: "Trust & Credibility Enhancements" },
-      { text: "User Journey Evaluation" },
-      { text: "Design Modernization Suggestions" },
-      { text: "Call-to-Action Optimization" },
-      { text: "Accessibility & UX Checks" },
-      { text: "Design Overhaul" },
-    ],
+    features: features,
     isPopular: true,
     cardClass: "bg-white border-gray-200",
-    buttonClass: "bg-purple-600 hover:bg-purple-700 text-white",
+    buttonClass: "bg-[#FF7D51] hover:bg-[#ff9a7a] text-white",
     textColorClass: "text-gray-700",
-    priceColorClass: "text-gray-900",
-    featureCheckColor: "text-purple-600",
+    priceColorClass: "text-[#FF7D51]",
+    featureCheckColor: "text-[#FF7D51]",
   },
   {
-    name: "Pro",
+    name: "Pro Enterprise",
     description: "For Enterprises",
     price: "$499",
     features: [
-      { text: "All included in Premium Version" },
-      { text: "Up to 5 Projects" },
-      { text: "Dedicated Support" },
-      { text: "Up to 5 Team Members" },
-      { text: "Dedicated Account Manager" },
+      "All included in growthaPlus",
+      "Up to 5 Projects",
+      "Dedicated Support",
+      "Up to 5 Team Members",
+      "Dedicated Account Manager",
     ],
     isPopular: false,
-    cardClass: "bg-white/10 backdrop-blur-sm border-white/20",
-    buttonClass: "bg-white hover:bg-gray-100 text-purple-700",
-    textColorClass: "text-white",
-    priceColorClass: "text-white",
-    featureCheckColor: "text-purple-300",
+    cardClass: "bg-white border-gray-200",
+    buttonClass: "bg-[#FF7D51] hover:bg-[#ff9a7a] text-white",
+    textColorClass: "text-gray-700",
+    priceColorClass: "text-[#FF7D51]",
+    featureCheckColor: "text-[#FF7D51]",
   },
 ];
 
 export default function PricingSection() {
+  const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
+
   return (
-    <div className="bg-gray-100">
-      <div className="bg-gradient-to-br from-[#BCAAFE] via-[#8C73FF] to-[#5F40D9] text-white rounded-2xl sm:rounded-3xl lg:rounded-[70px] w-[95%] mx-auto py-8 sm:py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
-              Ready to 10X Your Website Revenue?
-            </h2>
-            <p className="text-base sm:text-lg text-purple-200 max-w-2xl mx-auto">
-              Join 500+ business owners who transformed their websites into
-              profit machines
-            </p>
+    <div className="bg-[#FF7D51] min-h-[100vh] flex flex-col items-center justify-center py-10 rounded-lg mx-2 lg:mx-20">
+      <div className="w-full max-w-2xl mx-auto text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          Ready to 10X Your Website Revenue?
+        </h2>
+        <p className="text-base sm:text-lg text-white/90 mb-6">
+          Join 500+ business owners who transformed their websites into profit
+          machines
+        </p>
+        <div className="flex items-center justify-center gap-2 mb-8 lg:hidden">
+          <span
+            className={`text-white text-base ${
+              selectedPlanIndex === 0 ? "font-semibold" : "opacity-70"
+            }`}
+          >
+            for individuals
+          </span>
+          <button
+            className="relative w-12 h-6 bg-white/60 rounded-full transition-colors duration-200 focus:outline-none mx-2"
+            role="switch"
+            aria-checked={selectedPlanIndex === 1}
+            onClick={() =>
+              setSelectedPlanIndex(selectedPlanIndex === 0 ? 1 : 0)
+            }
+          >
+            <span
+              className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-200 ${
+                selectedPlanIndex === 1 ? "translate-x-6" : "translate-x-0"
+              }`}
+            />
+          </button>
+          <span
+            className={`text-white text-base ${
+              selectedPlanIndex === 1 ? "font-semibold" : "opacity-70"
+            }`}
+          >
+            for enterprises
+          </span>
+        </div>
+      </div>
+      <div className="w-full max-w-md mx-auto lg:hidden">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 pt-10 relative flex flex-col items-center">
+          {pricingPlansData[selectedPlanIndex].isPopular && (
+            <div className="absolute top-4 right-4">
+              <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                Popular
+              </span>
+            </div>
+          )}
+          <h3 className="text-2xl font-bold mb-1 text-gray-900">
+            {pricingPlansData[selectedPlanIndex].name}
+          </h3>
+          <div className="flex items-center mb-4 mt-2">
+            {pricingPlansData[selectedPlanIndex].originalPrice && (
+              <span className="text-xl text-gray-400 line-through mr-2">
+                {pricingPlansData[selectedPlanIndex].originalPrice}
+              </span>
+            )}
+            <span className="text-3xl font-extrabold text-[#FF7D51]">
+              {pricingPlansData[selectedPlanIndex].price}
+            </span>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto items-stretch">
-            {pricingPlansData.map((plan, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "p-4 sm:p-6 rounded-xl sm:rounded-xl lg:rounded-xl shadow-2xl border relative flex flex-col",
-                  plan.cardClass
-                )}
-              >
-                {plan.isPopular && (
-                  <div className="absolute top-0 right-6 -mt-4 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
-                    Popular
-                  </div>
-                )}
-                <div className="flex-grow">
-                  <h3
-                    className={cn(
-                      "text-lg sm:text-xl font-bold mb-1",
-                      plan.textColorClass
-                    )}
-                  >
-                    {plan.name}
-                  </h3>
-                  <p
-                    className={cn(
-                      "text-xs mb-4",
-                      plan.isPopular ? "text-gray-500" : "text-purple-200"
-                    )}
-                  >
-                    {plan.description}
-                  </p>
-
-                  <div className="mb-4">
-                    {plan.originalPrice && (
-                      <span
-                        className={cn(
-                          "text-lg line-through mr-2",
-                          plan.isPopular ? "text-purple-300" : "text-gray-400"
-                        )}
-                      >
-                        {plan.originalPrice}
-                      </span>
-                    )}
-                    <span
-                      className={cn(
-                        "text-2xl sm:text-3xl font-extrabold",
-                        plan.priceColorClass
-                      )}
-                    >
-                      {plan.price}
-                    </span>
-                  </div>
-
-                  <p
-                    className={cn(
-                      "text-xs font-semibold mb-2",
-                      plan.textColorClass
-                    )}
-                  >
-                    What&apos;s included
-                  </p>
-                  <ul className="space-y-1 mb-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center">
-                        <CheckCircle2
-                          className={cn(
-                            "w-4 h-4 mr-2 flex-shrink-0",
-                            plan.featureCheckColor
-                          )}
-                        />
-                        <span
-                          className={cn(
-                            "text-xs",
-                            plan.isPopular ? "text-gray-600" : "text-purple-100"
-                          )}
-                        >
-                          {feature.text}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Button
-                  size="lg"
-                  className={cn(
-                    "w-full text-sm font-semibold py-2 rounded-lg",
-                    plan.buttonClass
-                  )}
+          <p className="text-sm font-semibold mb-3 text-gray-700">
+            What's included:
+          </p>
+          <ul className="space-y-2 mb-8 w-full">
+            {pricingPlansData[selectedPlanIndex].features.map(
+              (feature: string, idx: number) => (
+                <li
+                  key={idx}
+                  className="flex items-center text-gray-700 text-sm"
                 >
-                  Get started
-                </Button>
-              </div>
-            ))}
+                  <CheckCircle2 className="w-4 h-4 mr-2 text-[#FF7D51]" />
+                  {feature}
+                </li>
+              )
+            )}
+          </ul>
+          <Button
+            size="lg"
+            className="w-full text-base font-semibold py-3 rounded-xl bg-[#FF7D51] hover:bg-[#ff9a7a] text-white mb-2"
+          >
+            Get started
+          </Button>
+          <div className="text-xs text-gray-400 mt-1">
+            30-day money-back guarantee
           </div>
         </div>
+      </div>
+      <div className="hidden lg:grid grid-cols-2 gap-8 max-w-4xl mx-5 mx-auto w-full">
+        {pricingPlansData.map((plan, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 pt-10 relative flex flex-col items-center"
+          >
+            {plan.isPopular && (
+              <div className="absolute top-4 right-4">
+                <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                  Popular
+                </span>
+              </div>
+            )}
+            <h3 className="text-2xl font-bold mb-1 text-gray-900">
+              {plan.name}
+            </h3>
+            <div className="flex items-center mb-4 mt-2">
+              {plan.originalPrice && (
+                <span className="text-xl text-gray-400 line-through mr-2">
+                  {plan.originalPrice}
+                </span>
+              )}
+              <span className="text-3xl font-extrabold text-[#FF7D51]">
+                {plan.price}
+              </span>
+            </div>
+            <p className="text-sm font-semibold mb-3 text-gray-700">
+              What's included:
+            </p>
+            <ul className="space-y-2 mb-8 w-full">
+              {plan.features.map((feature: string, idx: number) => (
+                <li
+                  key={idx}
+                  className="flex items-center text-gray-700 text-sm"
+                >
+                  <CheckCircle2 className="w-4 h-4 mr-2 text-[#FF7D51]" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <Button
+              size="lg"
+              className="w-full text-base font-semibold py-3 rounded-xl bg-[#FF7D51] hover:bg-[#ff9a7a] text-white mb-2"
+            >
+              Get started
+            </Button>
+            <div className="text-xs text-gray-400 mt-1">
+              30-day money-back guarantee
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
