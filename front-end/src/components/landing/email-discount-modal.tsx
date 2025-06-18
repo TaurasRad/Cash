@@ -50,19 +50,6 @@ export default function EmailDiscountModal() {
   const [attempts, setAttempts] = useState(0);
   const [isProcessingPick, setIsProcessingPick] = useState(false);
 
-  // Initialize or reset cards
-  const initializeCards = () => {
-    const newCards = Array.from({ length: initialCardCount }, (_, i) => ({
-      id: i,
-      revealedIncorrect: false,
-      isLucky: false,
-    }));
-    setCards(newCards);
-    setAttempts(0);
-    setSelectedCardId(null);
-    setIsProcessingPick(false);
-  };
-
   useEffect(() => {
     if (typeof window === "undefined") return;
     // Commenting out for easier testing in preview, re-enable for production
@@ -90,9 +77,17 @@ export default function EmailDiscountModal() {
   // Initialize cards when initialCardCount changes or modal opens to "pick" step
   useEffect(() => {
     if (open && step === "pick") {
-      initializeCards();
+      const newCards = Array.from({ length: initialCardCount }, (_, i) => ({
+        id: i,
+        revealedIncorrect: false,
+        isLucky: false,
+      }));
+      setCards(newCards);
+      setAttempts(0);
+      setSelectedCardId(null);
+      setIsProcessingPick(false);
     }
-  }, [initialCardCount, open, step, initializeCards]); // Rerun when initialCardCount changes
+  }, [initialCardCount, open, step]); // Rerun when initialCardCount changes
 
   useEffect(() => {
     if (step === "thanks") {
