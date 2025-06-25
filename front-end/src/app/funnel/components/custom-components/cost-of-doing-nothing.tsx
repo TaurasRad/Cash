@@ -1,7 +1,7 @@
 import React from "react";
 
 const CostOfDoingNothing = () => (
-  <div className="bg-gradient-to-b from-red-400 to-red-300 rounded-2xl p-4 md:p-8 text-center max-w-2xl mx-auto w-[90%] shadow-lg">
+  <div className="bg-[#FF7451] rounded-2xl p-4 md:p-8 text-center max-w-2xl mx-auto w-[90%] shadow-lg">
     <h2 className="text-white text-xl md:text-3xl font-bold mb-3 md:mb-5">
       The Cost Of Doing Nothing
     </h2>

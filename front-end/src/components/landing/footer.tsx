@@ -1,110 +1,63 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import Image from "next/image";
+import { Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const footerNavLinks = [
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press", href: "#" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { label: "Website Audits", href: "#" },
-      { label: "Design Overhaul", href: "#" },
-      { label: "CRO", href: "#" },
-      { label: "Mobile Optimization", href: "#" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Case Studies", href: "#" },
-      { label: "Guides", href: "#" },
-      { label: "FAQ", href: "#" },
-      { label: "Support", href: "#" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-    ],
-  },
-];
-
-const socialMediaLinks = [
-  { label: "Facebook", href: "#", icon: Facebook },
-  { label: "Twitter", href: "#", icon: Twitter },
-  { label: "Instagram", href: "#", icon: Instagram },
-  { label: "LinkedIn", href: "#", icon: Linkedin },
-  { label: "YouTube", href: "#", icon: Youtube },
+const footerLinks = [
+  { label: "Terms of use", href: "/terms" },
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Socials", href: "#" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-200 text-gray-700 py-12 sm:py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-          {/* Logo and Company Info */}
-          <div className="lg:col-span-2 mb-6 md:mb-0">
-            <Link
-              href="/"
-              className="text-3xl font-bold text-purple-700 mb-4 inline-block"
-            >
-              Logo
+    <footer className="bg-white py-12 sm:py-16">
+      <div className="container mx-auto flex flex-col items-center text-center gap-8 px-4">
+        <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
+            <Link href="/">
+              <Image
+                src="/logo-main.png"
+                alt="Growtha Logo"
+                width={140}
+                height={38}
+                priority
+              />
             </Link>
-            <p className="text-sm text-gray-600 max-w-xs">
-              Transforming websites into high-converting revenue machines.
+            <p className="text-lg text-gray-700 max-w-sm">
+              Smart design. Smarter data. More Customers.
             </p>
           </div>
 
-          {/* Navigation Links */}
-          {footerNavLinks.map((section) => (
-            <div key={section.title}>
-              <h4 className="font-semibold text-gray-800 mb-4">
-                {section.title}
-              </h4>
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-purple-700 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <hr className="border-gray-300 my-8" />
-
-        <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
-          <p className="text-gray-600 mb-4 sm:mb-0">
-            &copy; {new Date().getFullYear()} YourBrand Inc. All rights
-            reserved.
-          </p>
-          <div className="flex space-x-4">
-            {socialMediaLinks.map((social) => (
+          <div className="flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-6">
+            {footerLinks.map((link) => (
               <Link
-                key={social.label}
-                href={social.href}
-                aria-label={social.label}
-                className="text-gray-500 hover:text-purple-700 transition-colors"
+                key={link.label}
+                href={link.href}
+                className="flex items-center justify-center lg:justify-start gap-2 text-gray-600 hover:text-gray-900"
               >
-                <social.icon className="w-5 h-5" />
+                <Zap className="h-5 w-5 text-[#FF6B4F]" />
+                <span>{link.label}</span>
               </Link>
             ))}
           </div>
+        </div>
+
+        <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8">
+          <p className="text-sm text-gray-500 order-2 lg:order-1">
+            © Growtha {new Date().getFullYear()} All rights reserved.
+          </p>
+
+          <Button
+            variant="default"
+            className="bg-[#FF6B4F] hover:bg-[#E66047] text-white rounded-full px-8 py-3 text-base font-semibold order-1 lg:order-2"
+            size="lg"
+          >
+            Powered by AI
+            <Zap className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     </footer>

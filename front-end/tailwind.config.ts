@@ -80,6 +80,9 @@ const config = {
         "grid-pattern":
           "linear-gradient(to right, rgba(255, 107, 74, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 107, 74, 0.1) 1px, transparent 1px)",
       },
+      backgroundSize: {
+        "grid-size": "32px 32px",
+      },
       fontFamily: {
         sans: ["Sora", "sans-serif"],
       },

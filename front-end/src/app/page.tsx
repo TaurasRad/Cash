@@ -2,7 +2,7 @@
 import React from "react";
 import HeroContent from "@/components/landing/hero-section";
 import StickyTopBanner from "@/components/landing/sticky-top-banned";
-import CostOfDoingNothing from "@/components/landing/cost-of-doing-nothing";
+import CostOfDoingNothing from "@/app/funnel/components/custom-components/cost-of-doing-nothing";
 import RevenueMachinesSection from "@/components/landing/revenue-machine-section";
 import Navbar from "@/components/landing/navbar";
 import TestimonialsSection from "@/components/landing/testimonial-section";
@@ -28,21 +28,21 @@ const WebsiteConversionLanding = () => {
 
   return (
     <>
-      <EmailDiscountModal />
+      {/* <EmailDiscountModal /> */}
       <div className="min-h-screen bg-grid-pattern bg-[size:40px_40px] text-gray-800 selection:bg-pink-500 selection:text-white flex flex-col">
         <Navbar />
         {/* <StickyTopBanner /> */}
-        <StickyCTA />
+        {/* <StickyCTA /> */}
         <main className="flex flex-col gap-14 sm:gap-28">
           <HeroContent />
-          <CostOfDoingNothing />
-          <ProblemPointsSection />
+          {/* <CostOfDoingNothing /> */}
+          {/* <ProblemPointsSection /> */}
           <RevenueMachinesSection />
-          <AgentWork />
-          <TestimonialsSection />
-          <PricingSection />
+          {/* <AgentWork /> */}
+          {/* <TestimonialsSection /> */}
+          {/* <PricingSection /> */}
           {/* <MovingQuestionSection /> */}
-          <Footer />
+          {/* <Footer /> */}
         </main>
       </div>
     </>

@@ -51,7 +51,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <TrustedBySection />
+      {/* <TrustedBySection /> */}
     </div>
   );
 }
